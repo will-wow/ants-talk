@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Ants Talk",
+  "name": "A Swarm of Processes: Simulating Ant Foraging Behavior with OTP",
   "icons": [
     {
       "src": "favicon.ico",

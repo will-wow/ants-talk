@@ -20,6 +20,7 @@ import createTheme from 'spectacle/lib/themes/default';
 // Require CSS
 require('normalize.css');
 
+
 const theme = createTheme(
   {
     primary: 'white',
@@ -43,10 +44,10 @@ export default class Presentation extends React.Component {
       >
         <Slide transition={['zoom']} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
+            A Swarm of Processes
           </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
+            Simulating Ant Foraging Behavior with OTP
           </Text>
         </Slide>
         <Slide transition={['fade']} bgColor="tertiary">
