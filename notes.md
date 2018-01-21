@@ -158,12 +158,118 @@ Worlds - Outside of an ant's sight-line, there's a whole world. It knows about l
 
 Finally, outside of the simulated world, there are the mechanics of running a simulation - spinning things up, shutting things down, assigning ID numbers, and gathering everything up to be displayed. We can keep the things we're simulating focused by taking the simulation itself into its own context.
 
-For completeness, I also a shared context, that holds a grab-bag of stuff used across contexts. That's maybe a code smell... or is it a code pheromone?
+For completeness, I also have a shared context, that holds a grab-bag of stuff used across contexts. That's maybe a code smell... or is it a code pheromone?
 
-No it's a smell, but what are you going to do.
+No, it's a smell, but what are you going to do.
 
 ## Outlining types
 
 Following DDD, the next thing I want to figure out is my data types. Then we can figure out how they get checked and transformed as the sim progresses.
 
-%Ant{}, %Tile.t, Surroundings.t, 
+Our main types are ants and tiles.
+
+Ants know know their location, then last move, and if they have food.
+
+```elixir
+defmodule Ants.Ants.Ant
+  @type t :: %Ant{
+          x: integer,
+          y: integer,
+          last: Move.t(),
+          food?: boolean
+        }
+
+  defstruct x: nil, y: nil, food?: false, last: nil
+end
+```
+
+Tiles can be of different types - land can have pheromones on it, food and home have food, and rocks don't have any special data.
+The type of the overall Tile module - Tile.t - is one of the four tile types. This is known as a variant, sum type, or tagged union. Whatever you call it, it means you can pattern match on a Tile.t, and run different logic depending on if it's food or land or whatever. This is a foundational concept in typed functional programming languages with Haskell and OCaml
+
+```elixir
+defmodule Ants.Worlds.Tile do
+  defmodule Land do
+    @type t :: %Land{pheromone: float}
+    defstruct pheromone: 0
+  end
+
+  defmodule Rock do
+    @type t :: %Rock{}
+    defstruct []
+  end
+
+  defmodule Home do
+    @type t :: %Home{food: integer}
+    defstruct food: 0
+  end
+
+  defmodule Food do
+    @type t :: %Food{food: integer}
+    defstruct food: 0
+  end
+
+  @type t :: Land.t() | Rock.t() | Home.t() | Food.t()
+end
+```
+
+A couple other types - Points and Moves, both of which are defined as pairs of integers, round out our domain objects.
+Points are x, y coordinates that start at 0, and Moves are changes to x and y that go from -1 to 1. Even though they're internally represented in the same way, they have different modules so we can have different functions to convert between them, and so that when we're destructing an {x, y}, it's clear what those numbers mean.
+
+```elixir
+defmodule Ants.Worlds.Point do
+  @type x :: integer
+  @type y :: integer
+  @type t :: {x, y}
+end
+
+defmodule Ants.Ants.Move do
+  @type dx :: integer
+  @type dy :: integer
+  @type t :: {dx, dy}
+end
+```
+
+Now that we've got some types, we can sketch out how our system will work. For the most part we're not going to dive into the actual implementation of these modules. After all, you probably don't actually need to know how to code an ant simulation - because I've already got that on lock - but seeing how one goes about organizing a somewhat complex OTP app might be interesting.
+
+Order:
+- WorldMap - show what the map will look like, parse into more machine-readable data
+- Worlds
+  - somehow we have to take that list of tile types, and turn it into some data that we can efficiently read from and update
+  - Rejected ideas:
+    - big list - but random access is hard, and we don't do appends anyway
+    - big tuple - it's fixed length, so random access is good. But then looping through and updating every pheromone would have to happen in a single process, which is lame
+- Tiles: Instead, use GenServers - one process for each tile.
+  - access each one by sim, x, y, so it's easy to find and update them in parallel
+  - use via tuples && registry (explain that)
+- TileSupervisor
+  - spins up tiles by x, y
+
+- Simulations
+  - Start up a sim with a world
+    - Show screencap of static world
+  - Cool. Now let's get some ants to gather up this food
+
+- Ant GenServer
+- AntMove
+  - with the actual selection being in TileSelector, show the formula from ACO
+  - show simple formula for ToHome
+  - show the selection of forward, food, or backward
+- Ant Supervisor
+
+- Simulations (2)
+  - Add in ants startup
+  - .turn
+    - every turn, do steps from ACO
+
+- Show final result
+
+IT'S ALIVE! (frankenstein's monster gif)
+
+So, amazingly, this actually works! The ants randomly walk around, and when they find food leave light pheromone trails behind.
+Other ants are recruited by the trails, and they quickly form up to gather food, closet first. Pretty slick!
+
+## What did we learn
+
+- ants are cool
+- you can manage large nested sets of processes with dynamicSupervisors and registries
+- thinking about your domain in terms of types
