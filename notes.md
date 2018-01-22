@@ -58,8 +58,7 @@ But mostly ants. Now, a great man once said:
 ---
 
 "A person is smart. People are dumb, panicky, dangerous animals and you know it."
-Luckily, we're not talking about people today. We're talking about ants, and they're
-just the opposite
+Luckily, we're not talking about people today. We're talking about ants, and they're just the opposite
 
 ---
 
