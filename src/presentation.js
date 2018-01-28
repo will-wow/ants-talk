@@ -1,10 +1,6 @@
-// Import React
 import React from 'react';
 
-// Import Spectacle Core tags
 import {
-  BlockQuote,
-  Cite,
   Deck,
   Heading,
   ListItem,
@@ -18,6 +14,8 @@ import {
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
+
+import AntSteps from './ant-steps';
 
 // Require CSS
 require('normalize.css');
@@ -120,13 +118,13 @@ export default class Presentation extends React.Component {
           </Notes>
         </Slide>
 
-        <Slide>
-          <Heading size={3}>
+        <Slide bgColor="secondary">
+          <Quote>
             An ant is dumb. A colony is a smart, efficient, coordinated group.
-          </Heading>
-          <Heading size={4} margin="10px 0 0" textColor="tertiary">
+          </Quote>
+          <Text size={4} margin="10px 0 0" textColor="tertiary">
             So how do they do it?
-          </Heading>
+          </Text>
           <Notes>
             "An ant is dumb. (Apologies to any ants in the room). A colony is a
             smart, efficient, coordinated group." So how do they do it?
@@ -138,120 +136,123 @@ export default class Presentation extends React.Component {
 
           <Notes>
             The answer, in short, is pheromones. Now, ants are a diverse set of
-            creatures, but one common strategy goes like this:
+            creatures, but here's one common strategy:
           </Notes>
         </Slide>
 
+        {AntSteps({
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
+          bold: [1],
+          notes: `
+            Let's follow an Ant named Alice. Alice - who, like all worker ants, is
+            female - wanders the world in a semi-random way, searching for food.
+          `
+        })}
+
+        {AntSteps({
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
+          bold: [2],
+          notes: `
+          But where ever Alice goes, she's generally able to keep track of where
+          she is. Scientists think that some ants can keep track of landmarks,
+          and others actually count their steps and know their location by dead
+          reckoning. We know this because some scientists attached tiny stilts
+          to ant legs (don't ask me how, and tragically I couldn't find
+          pictures). They found that the ants overshot their colony when
+          returning to it, because their step counts were off.
+          `
+        })}
+
+        {AntSteps({
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
+          bold: [3, 4, 5],
+          notes: `
+            In any case, once Alice comes across food, she picks up a piece, and
+            heads back home. Since she knows where she is, she's able to take a
+            pretty direct path back.
+          `
+        })}
+
+        {AntSteps({
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
+          bold: [6],
+          notes: `
+            But when a Alice is traveling with food, she leaves a pheromone
+            trail behind her, which other ants can smell. For some ants, the
+            mechanism is just the food weighing them down enough to make their
+            stingers drag across the ground.
+          `
+        })}
+
+        {AntSteps({
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
+          bold: [7, 8],
+          notes: `
+            In any case, once Alice drops the food off, she can head back out.
+          `
+        })}
+
+        {AntSteps({
+          name: 'Bobbie the Mediocre Scout',
+          image: './img/ant-2.jpg',
+          notes: `
+            Now let's follow Bobbie, another ant. She follows the same steps,
+            but happens to find food that's twice as far out as Alice's. Still, she takes it back, leaving a pheromone trail behind her. 
+          `
+        })}
+
         <Slide>
-          <Heading fit>Alice the Ant</Heading>
-          <List>
-            <ListItem bold>Wander the area</ListItem>
-            <ListItem>Keep track where you are</ListItem>
-            <ListItem>Come across food</ListItem>
-            <ListItem>Grab some</ListItem>
-            <ListItem>Head straight home</ListItem>
-            <ListItem>Leave a pheromone trail behind</ListItem>
-            <ListItem>Drop off food</ListItem>
-            <ListItem>Consider going back for more</ListItem>
-          </List>
+          <Heading>Pheromones evaporate</Heading>
 
           <Notes>
-            Alice the ant - who, like all worker ants, is female - wanders the
-            world in a semi-random way, searching for food.
+            But there's an important caveat - pheromone trails evaporate over
+            time. So because Bobbie's trip takes twice as long, Bobbie is laying
+            down half the pheromones than Alice is for a given hour of
+            collecting. And because the pheromones evaporate over time, Bobbie's
+            trail will never get that strong.
           </Notes>
         </Slide>
 
-        <Slide>
-          <Heading fit>Alice the Ant</Heading>
-          <List>
+        <Slide bgImage="./img/ant-3.jpg" bgDarken="0.5">
+          <Heading fit>Eve the Follower</Heading>
+
+          <List textColor="primary">
             <ListItem>Wander the area</ListItem>
-            <ListItem bold>Keep track where you are</ListItem>
-            <ListItem>Come across food</ListItem>
-            <ListItem>Grab some</ListItem>
-            <ListItem>Head straight home</ListItem>
-            <ListItem>Leave a pheromone trail behind</ListItem>
-            <ListItem>Drop off food</ListItem>
-            <ListItem>Consider going back for more</ListItem>
+            <ListItem>If pheromones found:</ListItem>
+            <ListItem>Decide to follow them if they're strong</ListItem>
+            <ListItem>Otherwise keep wandering</ListItem>
           </List>
 
           <Notes>
-            But where ever Alice goes, she's generally able to keep track of
-            where she is. Scientists think that some ants can keep track of
-            landmarks, and others actually count their steps and know their
-            location by dead reckoning - they know this because some scientists
-            attached tiny stilts to ant legs (don't ask me how, and tragically I
-            couldn't find pictures). They found that the ants overshot their
-            colony when returning to it, because their step counts were off.
+            This is important for our last ant, Eve. It turns out, there's
+            another step in the ant algorithem Alice and Bobbie are following -
+            if, while wandering, they come across a pheromone trail, they may
+            decide to follow it to food, depending on how strong the trail is.
+            <br />
+            Now we see how this comes together. If in Eve's wandering she comes
+            across Bobbie's weak trail, she may choose to pass it by. But when
+            she comes across Alice's strong trail, she knows there's food close
+            by, and is more likely to get on the trail. Over time, more and more
+            ants make that same choice, and so eventually the colony forms up
+            and quickly collects the closest food. Then, once the food has been
+            collected, Alice's trail evaporates, and perhaps the ants will find
+            Bobbie's trail and focus on it next.
           </Notes>
         </Slide>
 
         <Slide>
-          <Heading fit>Alice the Ant</Heading>
-          <List>
-            <ListItem>Wander the area</ListItem>
-            <ListItem>Keep track where you are</ListItem>
-            <ListItem bold>Come across food</ListItem>
-            <ListItem bold>Grab some</ListItem>
-            <ListItem bold>Head straight home</ListItem>
-            <ListItem>Leave a pheromone trail behind</ListItem>
-            <ListItem>Drop off food</ListItem>
-            <ListItem>Consider going back for more</ListItem>
-          </List>
+          <Heading>Recruitment Strategy</Heading>
 
           <Notes>
-            In any case, once an ant comes across food, they pick up a piece,
-            and head back home. Since they know where they are, they're able to
-            take a pretty direct path back.
+            This is known as a recruitment strategy - a way for members of a
+            swarm to tell other members - "hey, I found something good, help me
+            out."
           </Notes>
-        </Slide>
-
-        <Slide>
-          <Heading fit>Alice the Ant</Heading>
-          <List>
-            <ListItem>Wander the area</ListItem>
-            <ListItem>Keep track where you are</ListItem>
-            <ListItem>Come across food</ListItem>
-            <ListItem>Grab some</ListItem>
-            <ListItem>Head straight home</ListItem>
-            <ListItem bold>Leave a pheromone trail behind</ListItem>
-            <ListItem>Drop off food</ListItem>
-            <ListItem>Consider going back for more</ListItem>
-          </List>
-
-          <Notes>
-            But when an ant is traveling with food, she leaves a pheromone trail
-            behind her, which other ants can smell. For some ants, the mechanism
-            is just the food weighing them down enough to make their stingers
-            drag across the ground.
-          </Notes>
-        </Slide>
-
-        <Slide>
-          <Heading fit>Alice the Ant</Heading>
-          <List>
-            <ListItem>Wander the area</ListItem>
-            <ListItem>Keep track where you are</ListItem>
-            <ListItem>Come across food</ListItem>
-            <ListItem>Grab some</ListItem>
-            <ListItem>Head straight home</ListItem>
-            <ListItem>Leave a pheromone trail behind</ListItem>
-            <ListItem bold>Drop off food</ListItem>
-            <ListItem bold>Consider going back for more</ListItem>
-          </List>
-          <Notes>
-            In any case, once the ant drops the food off, she can head back out.
-          </Notes>
-        </Slide>
-
-        <Slide>
-          <Heading fit>Bobbie the Mediocre Scout</Heading>
-
-          <List>
-            <ListItem>
-              - Also wandered into food - But it's further away - Bring it back
-              - Leave a trail - Trail partially evaporates
-            </ListItem>
-          </List>
         </Slide>
       </Deck>
     );
