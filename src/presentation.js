@@ -9,13 +9,14 @@ import {
   Slide,
   Text,
   Notes,
-  Image
+  Image,
+  CodePane
 } from 'spectacle';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
-import AntSteps from './ant-steps';
+import AntSteps from './antSteps';
 
 // Require CSS
 require('normalize.css');
@@ -230,18 +231,18 @@ export default class Presentation extends React.Component {
 
           <Notes>
             This is important for our last ant, Eve. It turns out, there's
-            another step in the ant algorithem Alice and Bobbie are following -
+            another step in the ant algorithm Alice and Bobbie are following -
             if, while wandering, they come across a pheromone trail, they may
             decide to follow it to food, depending on how strong the trail is.
             <br />
             Now we see how this comes together. If in Eve's wandering she comes
             across Bobbie's weak trail, she may choose to pass it by. But when
             she comes across Alice's strong trail, she knows there's food close
-            by, and is more likely to get on the trail. Over time, more and more
-            ants make that same choice, and so eventually the colony forms up
-            and quickly collects the closest food. Then, once the food has been
-            collected, Alice's trail evaporates, and perhaps the ants will find
-            Bobbie's trail and focus on it next.
+            by, and she's more likely to get on the trail. Over time, more and
+            more ants make that same choice, and so eventually the colony forms
+            up and quickly collects the closest food. Then, once the food has
+            been collected, Alice's trail evaporates, and perhaps the ants will
+            find Bobbie's trail and focus on it next.
           </Notes>
         </Slide>
 
@@ -252,6 +253,25 @@ export default class Presentation extends React.Component {
             This is known as a recruitment strategy - a way for members of a
             swarm to tell other members - "hey, I found something good, help me
             out."
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading>That's cool (maybe). So what?</Heading>
+
+          <Notes>
+            So that's more or less how ants work! Which is interesting, maybe.
+            But as a developer, what's maybe more interesting is that what Alice
+            and Eve and all were doing looked a lot like code.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Alice in Pseudo Code</Heading>
+          <CodePane lang="elixir" source={require('./code/pseudo-ant.ex')} />
+          <Notes>
+            In fact, it's pretty straightforward to translate our ant's instructions into some pseudo code like this. There are two main cases here - one where the ant doesn't have food, and one where she does. In the no food case, if Alice sees food she grabs it, if she sees a strong pheromone trail she gets on it, and if she sees a weak trail, or nothing, she carries on. <br/>
+            If Alice is carrying food, then she deposits pheromones and carries on toward home. When she gets home, she drops off the food and heads back out.
           </Notes>
         </Slide>
       </Deck>
