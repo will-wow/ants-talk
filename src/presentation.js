@@ -1,36 +1,38 @@
-import React from "react";
+import React from 'react';
 
 import {
+  CodePane,
   Deck,
   Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text,
-  Notes,
   Image,
-  CodePane
-} from "spectacle";
+  List,
+  ListItem,
+  Notes,
+  Quote,
+  S,
+  Slide,
+  Text
+} from 'spectacle';
 
 // Import theme
-import createTheme from "spectacle/lib/themes/default";
+import createTheme from 'spectacle/lib/themes/default';
 
-import AntSteps from "./antSteps";
+import AntSteps from './AntSteps';
+import CiteLink from './CiteLink';
 
 // Require CSS
-require("normalize.css");
+require('normalize.css');
 
 const theme = createTheme(
   {
-    primary: "white",
-    secondary: "#1F2022",
-    tertiary: "#03A9FC",
-    quarternary: "#CECECE"
+    primary: 'white',
+    secondary: '#1F2022',
+    tertiary: '#03A9FC',
+    quarternary: '#CECECE'
   },
   {
-    primary: "Montserrat",
-    secondary: "Helvetica"
+    primary: 'Montserrat',
+    secondary: 'Helvetica'
   }
 );
 
@@ -56,7 +58,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide
-          transition={["fade"]}
+          transition={['fade']}
           bgColor="tertiary"
           bgImage="./img/ants-line.jpg"
           bgDarken="0.5"
@@ -67,7 +69,7 @@ export default class Presentation extends React.Component {
           <Notes>Swarms of ants</Notes>
         </Slide>
 
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
           <Heading size={2}>Also Elixir things</Heading>
 
           <List>
@@ -93,7 +95,7 @@ export default class Presentation extends React.Component {
           </Notes>
         </Slide>
 
-        <Slide transition={["fade"]} bgImage="./img/ant-2.jpg" bgDarken="0.5">
+        <Slide transition={['fade']} bgImage="./img/ant-2.jpg" bgDarken="0.5">
           <Heading size={2} textColor="primary">
             But mostly ants
           </Heading>
@@ -138,8 +140,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         {AntSteps({
-          name: "Alice the Ant",
-          image: "./img/ant-1.jpg",
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
           bold: [1],
           notes: `
             Let's follow an Ant named Alice. Alice - who, like all worker ants, is
@@ -148,8 +150,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: "Alice the Ant",
-          image: "./img/ant-1.jpg",
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
           bold: [2],
           notes: `
           But where ever Alice goes, she's generally able to keep track of where
@@ -163,8 +165,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: "Alice the Ant",
-          image: "./img/ant-1.jpg",
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
           bold: [3, 4, 5],
           notes: `
             In any case, once Alice comes across food, she picks up a piece, and
@@ -174,8 +176,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: "Alice the Ant",
-          image: "./img/ant-1.jpg",
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
           bold: [6],
           notes: `
             But when a Alice is traveling with food, she leaves a pheromone
@@ -186,8 +188,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: "Alice the Ant",
-          image: "./img/ant-1.jpg",
+          name: 'Alice the Ant',
+          image: './img/ant-1.jpg',
           bold: [7, 8],
           notes: `
             In any case, once Alice drops the food off, she can head back out.
@@ -195,8 +197,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: "Bobbie the Mediocre Scout",
-          image: "./img/ant-2.jpg",
+          name: 'Bobbie the Mediocre Scout',
+          image: './img/ant-2.jpg',
           notes: `
             Now let's follow Bobbie, another ant. She follows the same steps,
             but happens to find food that's twice as far out as Alice's. Still, she takes it back, leaving a pheromone trail behind her. 
@@ -264,7 +266,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading fit>Alice in Pseudo Code</Heading>
-          <CodePane lang="elixir" source={require("./code/pseudo-ant.ex")} />
+          <CodePane lang="elixir" source={require('./code/pseudo-ant.ex')} />
           <Notes>
             In fact, it's pretty straightforward to translate our ant's
             instructions into some pseudo code like this. There are two main
@@ -275,6 +277,80 @@ export default class Presentation extends React.Component {
             If Alice is carrying food, then she deposits pheromones and carries
             on toward home. When she gets home, she drops off the food and heads
             back out.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Marco Dorigo: Ant Fan</Heading>
+          <Image src="./img/marco-dorigo.jpg" margin="2rem auto" width="75%" />
+
+          <Notes>
+            As it turns out, we're not the first to notice that ants seem
+            similar to computer programs. Back in '92, a man named Marco Dorigo
+            (who as you can see is into both ants and robots, I can relate) came
+            up with what he called the Ant System, for his PhD thesis. This was
+            the start of what's now called Ant Colony Optimization, or ACO,
+            which is a method of applying Alice's ant algorithm to tricky
+            problems like the traveling salesman and knapsack problems.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Ant Colony Optimization algorithm</Heading>
+          <Image src="./img/aco-formula.svg" margin="2rem auto" width="75%" />
+
+          <Notes>
+            This is the general formula for ACO. There's a lot of greek in here,
+            but all it really is, is:
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Ant Colony Optimization algorithm</Heading>
+          <Image src="./img/aco-formula.svg" margin="2rem auto" width="75%" />
+
+          <Text>
+            <S type="underline">Pheromones * Desirability</S>
+            <br />
+            Sum(Pheromones * Desirability)
+          </Text>
+
+          <Notes>
+            For a set of possible moves, the probability of picking one of them
+            is the amount of pheromone deposited on the move, to the power of
+            some influence factor (2.0 by default), times the desirability of
+            the move (which might relate to distance in traveling salesman, or
+            value in knapsack) to some factor, divided by the sum of the value
+            of all the other available moves.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Traveling Salesman Problem</Heading>
+          <Image src="./img/salesman.png" />
+          <CiteLink href="https://en.wikipedia.org/wiki/File:Aco_TSP.svg" />
+
+          <Notes>
+            So the traveling salesman problem is a classic hard problem in
+            computer science. A traveling salesperson wants to visit a bunch of
+            cities in the least time possible. How do they do that? Well it
+            turns out there's no easy way to figure it out, but ACO is a pretty
+            good approach.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading fit>Traveling Salesman Problem: ACO Solution</Heading>
+          <Image src="./img/aco-salesman.png" />
+          <CiteLink href="https://en.wikipedia.org/wiki/File:Aco_TSP.svg" />
+
+          <Notes>
+            With Ant Colony Optimization, you have a bunch of ants randomly
+            traverse a graph of cities, visiting each one once. Afterwards, each
+            ant drops a pheromone trail on its path, with the strength of the
+            trail corresponding to how short the trip was. Since the ants use
+            the ACO algorithm to choose the moves, over multiple iterations the
+            ants coalesce onto an optimal solution. Pretty smart ants!
           </Notes>
         </Slide>
       </Deck>
