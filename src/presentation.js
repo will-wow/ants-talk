@@ -47,6 +47,17 @@ export default class Presentation extends React.Component {
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
             Simulating Ant Foraging Behavior with OTP
           </Text>
+
+          <Notes>
+            Hi, I'm Will! I'm a developer at Carbon Five, here in our LA office.
+            You already heard Andrew's pitch so I won't give you that again.
+            Unless you want to work for us, in which case I totally will later.
+            Anyway I'm also almost always at the Elixir LA meetups in Santa
+            Monica, so if you want to chat and we don't get a chance here, maybe
+            I'll see you there!
+            <br />
+            So! A swarm of processes...
+          </Notes>
         </Slide>
 
         <Slide bgImage="./img/ant-1.jpg" bgDarken="0.5">
@@ -160,7 +171,7 @@ export default class Presentation extends React.Component {
           reckoning. We know this because some scientists attached tiny stilts
           to ant legs (don't ask me how, and tragically I couldn't find
           pictures). They found that the ants overshot their colony when
-          returning to it, because their step counts were off.
+          returning to it, because their step counts and distance were off.
           `
         })}
 
@@ -180,7 +191,7 @@ export default class Presentation extends React.Component {
           image: './img/ant-1.jpg',
           bold: [6],
           notes: `
-            But when a Alice is traveling with food, she leaves a pheromone
+            But when Alice is traveling with food, she leaves a pheromone
             trail behind her, which other ants can smell. For some ants, the
             mechanism is just the food weighing them down enough to make their
             stingers drag across the ground.
@@ -232,7 +243,15 @@ export default class Presentation extends React.Component {
             another step in the ant algorithm Alice and Bobbie are following -
             if, while wandering, they come across a pheromone trail, they may
             decide to follow it to food, depending on how strong the trail is.
-            <br />
+          </Notes>
+        </Slide>
+        <Slide>
+          <Heading fit>Bringing to Together</Heading>
+          <Image src="./img/aco-image.png" />
+
+          <CiteLink href="https://en.wikipedia.org/wiki/File:Knapsack_ants.svg" />
+
+          <Notes>
             Now we see how this comes together. If in Eve's wandering she comes
             across Bobbie's weak trail, she may choose to pass it by. But when
             she comes across Alice's strong trail, she knows there's food close
@@ -274,9 +293,9 @@ export default class Presentation extends React.Component {
             does. In the no food case, if Alice sees food she grabs it, if she
             sees a strong pheromone trail she gets on it, and if she sees a weak
             trail, or nothing, she carries on. <br />
-            If Alice is carrying food, then she deposits pheromones and carries
-            on toward home. When she gets home, she drops off the food and heads
-            back out.
+            If Alice is carrying food, then she deposits pheromones and keeps
+            going towards on toward home. When she gets home, she drops off the
+            food and heads back out. Simple.
           </Notes>
         </Slide>
 
@@ -301,7 +320,7 @@ export default class Presentation extends React.Component {
 
           <Notes>
             This is the general formula for ACO. There's a lot of greek in here,
-            but all it really is, is:
+            but really all it is, is:
           </Notes>
         </Slide>
 
@@ -319,9 +338,9 @@ export default class Presentation extends React.Component {
             For a set of possible moves, the probability of picking one of them
             is the amount of pheromone deposited on the move, to the power of
             some influence factor (2.0 by default), times the desirability of
-            the move (which might relate to distance in traveling salesman, or
-            value in knapsack) to some factor, divided by the sum of the value
-            of all the other available moves.
+            the move (which might relate to distance in a traveling salesman
+            problem, or value in a knapsack problem), also taken to some factor,
+            divided by the sum of the value of all the other available moves.
           </Notes>
         </Slide>
 
@@ -331,11 +350,11 @@ export default class Presentation extends React.Component {
           <CiteLink href="https://en.wikipedia.org/wiki/File:Aco_TSP.svg" />
 
           <Notes>
-            So the traveling salesman problem is a classic hard problem in
-            computer science. A traveling salesperson wants to visit a bunch of
-            cities in the least time possible. How do they do that? Well it
-            turns out there's no easy way to figure it out, but ACO is a pretty
-            good approach.
+            The traveling salesman problem is a classic hard problem in computer
+            science. A traveling salesperson wants to visit a bunch of cities in
+            the least time possible. How do they do that? Well it turns out
+            there's no easy way to figure it out, but ACO is a pretty good
+            approach.
           </Notes>
         </Slide>
 
