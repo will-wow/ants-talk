@@ -9,6 +9,7 @@ import IntroSlides from './sections/IntroSlides';
 import AliceBobbieEveSlides from './sections/AliceBobbieEveSlides';
 import AcoSlides from './sections/AcoSlides';
 import OtpIntroSlides from './sections/OtpIntroSlides';
+import Contexts from './sections/Contexts';
 
 // Require CSS
 require('normalize.css');
@@ -34,6 +35,7 @@ export default class Presentation extends React.Component {
         {AliceBobbieEveSlides}
         {AcoSlides}
         {OtpIntroSlides}
+        {Contexts}
       </Deck>
     );
   }
