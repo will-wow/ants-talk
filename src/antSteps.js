@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Slide, Heading, ListItem, List, Notes } from 'spectacle';
+import { Slide, Heading, ListItem, List, Notes } from "spectacle";
 
 const isItemBold = boldItems => item => {
   if (!boldItems) return false;

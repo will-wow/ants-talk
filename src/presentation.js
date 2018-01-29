@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Deck,
@@ -11,26 +11,26 @@ import {
   Notes,
   Image,
   CodePane
-} from 'spectacle';
+} from "spectacle";
 
 // Import theme
-import createTheme from 'spectacle/lib/themes/default';
+import createTheme from "spectacle/lib/themes/default";
 
-import AntSteps from './antSteps';
+import AntSteps from "./antSteps";
 
 // Require CSS
-require('normalize.css');
+require("normalize.css");
 
 const theme = createTheme(
   {
-    primary: 'white',
-    secondary: '#1F2022',
-    tertiary: '#03A9FC',
-    quartenary: '#CECECE'
+    primary: "white",
+    secondary: "#1F2022",
+    tertiary: "#03A9FC",
+    quarternary: "#CECECE"
   },
   {
-    primary: 'Montserrat',
-    secondary: 'Helvetica'
+    primary: "Montserrat",
+    secondary: "Helvetica"
   }
 );
 
@@ -38,7 +38,7 @@ export default class Presentation extends React.Component {
   render() {
     return (
       <Deck transitionDuration={500} theme={theme}>
-        <Slide transition={['zoom']} bgColor="primary">
+        <Slide bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             A Swarm of Processes
           </Heading>
@@ -46,12 +46,8 @@ export default class Presentation extends React.Component {
             Simulating Ant Foraging Behavior with OTP
           </Text>
         </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="tertiary"
-          bgImage="./img/ant-1.jpg"
-          bgDarken="0.5"
-        >
+
+        <Slide bgImage="./img/ant-1.jpg" bgDarken="0.5">
           <Heading size={2} textColor="primary">
             Ants
           </Heading>
@@ -60,7 +56,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide
-          transition={['fade']}
+          transition={["fade"]}
           bgColor="tertiary"
           bgImage="./img/ants-line.jpg"
           bgDarken="0.5"
@@ -71,7 +67,7 @@ export default class Presentation extends React.Component {
           <Notes>Swarms of ants</Notes>
         </Slide>
 
-        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
+        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <Heading size={2}>Also Elixir things</Heading>
 
           <List>
@@ -97,7 +93,7 @@ export default class Presentation extends React.Component {
           </Notes>
         </Slide>
 
-        <Slide transition={['fade']} bgImage="./img/ant-2.jpg" bgDarken="0.5">
+        <Slide transition={["fade"]} bgImage="./img/ant-2.jpg" bgDarken="0.5">
           <Heading size={2} textColor="primary">
             But mostly ants
           </Heading>
@@ -142,8 +138,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         {AntSteps({
-          name: 'Alice the Ant',
-          image: './img/ant-1.jpg',
+          name: "Alice the Ant",
+          image: "./img/ant-1.jpg",
           bold: [1],
           notes: `
             Let's follow an Ant named Alice. Alice - who, like all worker ants, is
@@ -152,8 +148,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: 'Alice the Ant',
-          image: './img/ant-1.jpg',
+          name: "Alice the Ant",
+          image: "./img/ant-1.jpg",
           bold: [2],
           notes: `
           But where ever Alice goes, she's generally able to keep track of where
@@ -167,8 +163,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: 'Alice the Ant',
-          image: './img/ant-1.jpg',
+          name: "Alice the Ant",
+          image: "./img/ant-1.jpg",
           bold: [3, 4, 5],
           notes: `
             In any case, once Alice comes across food, she picks up a piece, and
@@ -178,8 +174,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: 'Alice the Ant',
-          image: './img/ant-1.jpg',
+          name: "Alice the Ant",
+          image: "./img/ant-1.jpg",
           bold: [6],
           notes: `
             But when a Alice is traveling with food, she leaves a pheromone
@@ -190,8 +186,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: 'Alice the Ant',
-          image: './img/ant-1.jpg',
+          name: "Alice the Ant",
+          image: "./img/ant-1.jpg",
           bold: [7, 8],
           notes: `
             In any case, once Alice drops the food off, she can head back out.
@@ -199,8 +195,8 @@ export default class Presentation extends React.Component {
         })}
 
         {AntSteps({
-          name: 'Bobbie the Mediocre Scout',
-          image: './img/ant-2.jpg',
+          name: "Bobbie the Mediocre Scout",
+          image: "./img/ant-2.jpg",
           notes: `
             Now let's follow Bobbie, another ant. She follows the same steps,
             but happens to find food that's twice as far out as Alice's. Still, she takes it back, leaving a pheromone trail behind her. 
@@ -268,10 +264,17 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading fit>Alice in Pseudo Code</Heading>
-          <CodePane lang="elixir" source={require('./code/pseudo-ant.ex')} />
+          <CodePane lang="elixir" source={require("./code/pseudo-ant.ex")} />
           <Notes>
-            In fact, it's pretty straightforward to translate our ant's instructions into some pseudo code like this. There are two main cases here - one where the ant doesn't have food, and one where she does. In the no food case, if Alice sees food she grabs it, if she sees a strong pheromone trail she gets on it, and if she sees a weak trail, or nothing, she carries on. <br/>
-            If Alice is carrying food, then she deposits pheromones and carries on toward home. When she gets home, she drops off the food and heads back out.
+            In fact, it's pretty straightforward to translate our ant's
+            instructions into some pseudo code like this. There are two main
+            cases here - one where the ant doesn't have food, and one where she
+            does. In the no food case, if Alice sees food she grabs it, if she
+            sees a strong pheromone trail she gets on it, and if she sees a weak
+            trail, or nothing, she carries on. <br />
+            If Alice is carrying food, then she deposits pheromones and carries
+            on toward home. When she gets home, she drops off the food and heads
+            back out.
           </Notes>
         </Slide>
       </Deck>
