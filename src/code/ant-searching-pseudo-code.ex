@@ -6,15 +6,3 @@ def ant_move(ant = %Ant{food?: false}) do
     true -> ant_move(ant)
   end
 end
-
-def ant_move(ant = %Ant{food?: true}) do
-  if at_home do
-    ant
-    |> drop_off_food()
-    |> ant_move()
-  else
-    ant
-    |> deposit_pheromone()
-    |> ant_move()
-  end
-end

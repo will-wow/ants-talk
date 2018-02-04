@@ -190,11 +190,10 @@ defmodule Ants.Ants.Ant
   @type t :: %Ant{
           x: integer,
           y: integer,
-          last: Move.t(),
           food?: boolean
         }
 
-  defstruct x: nil, y: nil, food?: false, last: nil
+  defstruct x: nil, y: nil, food?: false
 end
 ```
 
@@ -248,7 +247,6 @@ Now that we've got some types, we can sketch out how our system will work. For t
 
 Order:
 
-* WorldMap - show what the map will look like, parse into more machine-readable data
 * Worlds
   * somehow we have to take that list of tile types, and turn it into some data that we can efficiently read from and update
   * Rejected ideas:

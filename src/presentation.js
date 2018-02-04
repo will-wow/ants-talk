@@ -10,6 +10,8 @@ import AliceBobbieEveSlides from './sections/AliceBobbieEveSlides';
 import AcoSlides from './sections/AcoSlides';
 import OtpIntroSlides from './sections/OtpIntroSlides';
 import Contexts from './sections/Contexts';
+import Types from './sections/Types';
+import Implementation from './sections/Implementation';
 
 // Require CSS
 require('normalize.css');
@@ -27,6 +29,11 @@ const theme = createTheme(
   }
 );
 
+theme.screen.components.codePane.fontSize = '2rem';
+theme.print.components.codePane.fontSize = '2rem';
+
+console.log(theme);
+
 export default class Presentation extends React.Component {
   render() {
     return (
@@ -36,6 +43,8 @@ export default class Presentation extends React.Component {
         {AcoSlides}
         {OtpIntroSlides}
         {Contexts}
+        {Types}
+        {Implementation}
       </Deck>
     );
   }

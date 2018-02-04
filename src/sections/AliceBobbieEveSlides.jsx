@@ -14,7 +14,8 @@ import {
 import AntSteps from '../elements/AntSteps';
 import CiteLink from '../elements/CiteLink';
 
-import antPseudoCode from '../code/pseudo-ant.ex';
+import antSearchingPseudoCode from '../code/ant-searching-pseudo-code.ex';
+import antGoingHomePseudoCode from '../code/ant-going-home-pseudo-code.ex';
 
 export default (
   <SlideSet>
@@ -160,18 +161,25 @@ export default (
     </Slide>
 
     <Slide>
-      <Heading fit>Alice in Pseudo Code</Heading>
-      <CodePane lang="elixir" source={antPseudoCode} />
+      <Heading fit>Alice in Pseudo Code: Searching</Heading>
+      <CodePane lang="elixir" source={antSearchingPseudoCode} />
       <Notes>
         In fact, it's pretty straightforward to translate our ant's instructions
         into some pseudo code like this. There are two main cases here - one
         where the ant doesn't have food, and one where she does. In the no food
         case, if Alice sees food she grabs it, if she sees a strong pheromone
         trail she gets on it, and if she sees a weak trail, or nothing, she
-        carries on. <br />
-        If Alice is carrying food, then she deposits pheromones and keeps going
-        towards on toward home. When she gets home, she drops off the food and
-        heads back out. Simple.
+        carries on.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading fit>Alice in Pseudo Code: Going Home</Heading>
+      <CodePane lang="elixir" source={antGoingHomePseudoCode} />
+      <Notes>
+        If Alice is carrying food on the other hand, then she deposits
+        pheromones and keeps going towards on toward home. When she gets home,
+        she drops off the food and heads back out. Simple.
       </Notes>
     </Slide>
   </SlideSet>
