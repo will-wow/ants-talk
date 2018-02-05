@@ -29,13 +29,14 @@ export default (
       <Notes>
         A reasonable place to start might be to define our humble ants. Like we
         discussed earlier, and ant only really knows two things - where they are
-        in the world, and if they're carrying food. So our Ant model is equally
-        simple - it know x, y coordinates, and has a food? boolean. You'll
-        notice I also defined a type for our ant. Types obviously aren't
-        required in Elixir - but declaring types for structs lets dialyzer be a
-        lot smarter, and is also a nice bit of documentation. In the Elixir
-        standard library, as well as in typed functional languages like OCaml,
-        It's idiomatic to name the main type in a module t...
+        in the world, and if they're carrying food or not. So our Ant model is
+        equally simple - it know x, y coordinates, and has a food? boolean.
+        You'll notice I also defined a type for our ant. Types obviously aren't
+        required in Elixir - but declaring types for structs lets the static
+        type checker dialyzer be a lot smarter, and is also a nice bit of
+        documentation. In the Elixir standard library, as well as in typed
+        functional languages like OCaml, It's idiomatic to name the main type in
+        a module t...
       </Notes>
     </Slide>
 
@@ -85,8 +86,8 @@ export default (
         Well, they're pretty much just the way I described them. Land tiles can
         have pheromones on them, food tiles have some food to be collected, the
         home colony has food that's been collected, and rocks don't have any
-        data associated with them. For brevity I've skipped the types here, but
-        pheromone is a float, while food is an integer.
+        particular data associated with them. For brevity I've skipped the types
+        here, but pheromone is a float, while food is an integer.
       </Notes>
     </Slide>
 
@@ -102,7 +103,8 @@ export default (
         programming, and is called a Discriminated Union, Tagged Union, Disjoin
         Union, Variant, or Sum Type, depending on the language. Whatever you
         call it, the point is that a Tile.t could be any sort of tile, but we
-        can use pattern matching to figure out which one it is.
+        can use pattern matching to figure out which one it is. That's what
+        makes a Tagged Union different from a simple Union type.
       </Notes>
     </Slide>
 
@@ -125,7 +127,7 @@ export default (
       <CodePane lang="elixir" source={pointMoveTypes} />
 
       <Notes>
-        A couple other types, Points and Moves, round out our domain model.<br />
+        A couple of other types, Points and Moves, round out our domain model.<br />
         Both of which are defined as pairs of integers: Points are x, y
         coordinates that start at 0, and Moves are changes to x and y that go
         from -1 to 1. Even though they're internally represented in the same

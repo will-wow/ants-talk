@@ -32,8 +32,6 @@ const theme = createTheme(
 theme.screen.components.codePane.fontSize = '2rem';
 theme.print.components.codePane.fontSize = '2rem';
 
-console.log(theme);
-
 export default class Presentation extends React.Component {
   render() {
     return (

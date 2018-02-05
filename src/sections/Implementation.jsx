@@ -16,7 +16,7 @@ import antMove from '../code/ant-move.ex';
 const summarySteps = [
   'Skynet will run on the BEAM',
   'Ants are cool',
-  'DynamicSupervisors and Registries',
+  'DynamicSupervisors, Registries, and Via Tuples',
   'Type your structs, name them `t`',
   'Think with processes'
 ];
@@ -29,10 +29,8 @@ export default (
       <Notes>
         Now that we've got some types, we can sketch out how our system will
         work. For the most part we're not going to dive into the actual
-        implementation of these modules. After all, you probably don't actually
-        need to know how to code an ant simulation - because I've already got
-        that on lock - but seeing how one goes about organizing a somewhat
-        complex OTP app might be interesting.
+        implementation of these modules, but you may be interested in some of
+        the mechanics of managing a bunch of processes.
       </Notes>
     </Slide>
 
@@ -58,9 +56,10 @@ export default (
       <Notes>
         A quick note on DynamicSupervisors - they're a new addition in Elixir
         1.6, and replace the old :simple_one_for_one Supervisors. Both allow a
-        supervisor to supervise many children, created at runtime. But the old
+        supervisor to oversee many children, created at runtime. But the old
         :simple_one_for_one supervisors had sort of awkward syntax, and could
-        only supervise a single type of child, declared in the init phase.
+        only supervise a single type of child, declared in the init phase, as
+        you can see here.
       </Notes>
     </Slide>
 
@@ -72,7 +71,10 @@ export default (
       <Notes>
         In contrast, the new DynamicSupervisors have a nicer syntax, and can
         supervise multiple types of children, since they don't declare the child
-        type until the start_child call.
+        type until the start_child call. I didn't end up taking advantage of
+        that in this project, because I found it was nice to separate out the
+        code that started up a given child type. Still, it's good to have the
+        option.
       </Notes>
     </Slide>
 
@@ -159,9 +161,9 @@ export default (
     >
       <Notes>
         For each simulation, we have a TileSupervisor that supervises a bunch of
-        tiles - 400, for a 20 by 20 grid. Each tile is a GenServer, that holds
-        our Tile.t data in state, and can be told to add pheromones or remove
-        food from its state.
+        tiles - four hundred, for a 20 by 20 grid. Each tile is a GenServer that
+        holds our Tile.t data in state, and can be told to add pheromones or
+        remove food from its state.
       </Notes>
     </Slide>
 
@@ -175,8 +177,8 @@ export default (
 
       <Notes>
         The via tuple for the tiles includes the x, y coordinates of the tile.
-        That's important, because it means that, for an ant at some set of
-        coordinates, we can easily look up all the tiles around it, without
+        That's important because it means that, for an ant at some set of
+        coordinates, we can easily look up all the tiles around it without
         having to loop through a big list.
       </Notes>
     </Slide>
@@ -202,9 +204,9 @@ export default (
       <CodePane lang="elixir" source={tileGenServer} />
 
       <Notes>
-        Once we've got a hold of all the tiles, we can send deposit and
-        decay_pheromones to land, take_food to food, and deposit_food to home.
-        If say a food tile receives a decay_pheromones message, it pattern
+        Once we've got a hold of all the tiles, we can send deposit_pheromones
+        and decay_pheromones to Land, take_food to Food, and deposit_food to
+        Home. If say a food tile receives a decay_pheromones message, it pattern
         matches its state, and knows to ignore the message. That way we can just
         send decay_pheromones to every tile without worrying about errors.
       </Notes>
@@ -218,9 +220,9 @@ export default (
       <Notes>
         We also have a process for each ant. But since there's nothing
         identifying about an ant - they move around, so they don't have stable
-        x, y coordinates - we need a little AntId Agent to assign each ant an
-        ID, and loop through all the IDs when telling ants to move or deposit
-        pheromones.
+        x, y coordinates like a tile - we need a little AntId Agent to assign a
+        unique identifier to each ant, and loop through all the IDs when telling
+        ants to move or deposit pheromones.
       </Notes>
     </Slide>
 
@@ -256,20 +258,20 @@ export default (
 
     <Slide bgImage="./img/ant-tree.png" bgSize="contain" bgRepeat="no-repeat">
       <Notes>
-        Those are the highlight! With this simple supervision tree, we're able
-        to spin up 100 ants and 400 tiles, and have them work together in a fun
-        way. One thing I found interesting about programming in this
-        process-heavy way is that it started feeling a little like OOP. I had
-        what were essentially a bunch of instances of ant and tile classes, each
-        with its own state, and methods I could call to update them. Is that a
-        good or bad thing? It definitely felt more Object Oriented than most
-        elixir code I've written. I'm not sure if that's a good thing or a bad
-        thing, but it's certainly A thing. Anyway, now that we've gone through
-        building this thing, let's see it in action!
+        Those are the highlights! With this simple supervision tree, we're able
+        to spin up a hundred ants and four hundred tiles, and have them work
+        together in a fun way. One thing I found interesting about programming
+        in this process-heavy way is that it started feeling a little like OOP.
+        I had what were essentially a bunch of instances of ant and tile
+        classes, each with its own state, and methods I could call to update
+        them. Is that a good or bad thing? It definitely felt more Object
+        Oriented than most elixir code I've written. Good or bad, it's something
+        to keep in mind. Anyway, now that we've gone through building this
+        thing, let's see it in action!
       </Notes>
     </Slide>
 
-    <Slide bgImage="./img/ants.gif" bgSize="contain" bgRepeat="no-repeat">
+    <Slide bgImage="./img/ants.fig" bgSize="contain" bgRepeat="no-repeat">
       <Notes>
         And there they go! You can see that the ants scatter around the world at
         first, and a few ants find all the food options. But because the closest
@@ -302,8 +304,8 @@ export default (
     <Slide>
       <Steps steps={summarySteps} bold={3} />
       <Notes>
-        DynamicSupervisors and Registries are useful for handing large numbers
-        of processes.
+        DynamicSupervisors, Registries, and Via Tuples are useful for handing
+        large numbers of processes.
       </Notes>
     </Slide>
 

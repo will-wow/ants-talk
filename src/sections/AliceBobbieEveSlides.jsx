@@ -124,7 +124,7 @@ export default (
       </Notes>
     </Slide>
     <Slide>
-      <Heading fit>Bringing to Together</Heading>
+      <Heading fit>Bringing it Together</Heading>
       <Image src="./img/aco-image.png" />
 
       <CiteLink href="https://en.wikipedia.org/wiki/File:Knapsack_ants.svg" />
@@ -155,8 +155,8 @@ export default (
 
       <Notes>
         So that's more or less how ants work! Which is interesting, maybe. But
-        as a developer, what's maybe more interesting is that what Alice and Eve
-        and all were doing looked a lot like code.
+        as a developer, what's maybe more interesting is that what Alice and
+        friends were doing looked a lot like code.
       </Notes>
     </Slide>
 
@@ -167,8 +167,8 @@ export default (
         In fact, it's pretty straightforward to translate our ant's instructions
         into some pseudo code like this. There are two main cases here - one
         where the ant doesn't have food, and one where she does. In the no food
-        case, if Alice sees food she grabs it, if she sees a strong pheromone
-        trail she gets on it, and if she sees a weak trail, or nothing, she
+        case, if Alice sees food she grabs it. If she sees a strong pheromone
+        trail she gets on it. And if she sees a weak trail, or nothing, she
         carries on.
       </Notes>
     </Slide>
