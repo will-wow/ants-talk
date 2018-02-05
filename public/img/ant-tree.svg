@@ -16,7 +16,7 @@
    id="svg8"
    sodipodi:docname="ant-tree.svg"
    inkscape:version="0.92.2 (unknown)"
-   inkscape:export-filename="/home/wow/repos/ants-talk/public/img/ant-tree_sim-supe.svg.png"
+   inkscape:export-filename="/home/wow/repos/ants-talk/public/img/ant-tree_ant.png"
    inkscape:export-xdpi="114.55"
    inkscape:export-ydpi="114.55">
   <defs
@@ -60,6 +60,87 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(261.93112,15.637607)">
+    <rect
+       style="fill:#ffffff;fill-opacity:0.6761905;stroke:none;stroke-width:3.59937859;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1222"
+       width="225"
+       height="125"
+       x="-261.93112"
+       y="-15.637607"
+       ry="1.6191452" />
+    <g
+       id="g1050"
+       inkscape:export-xdpi="114.55"
+       inkscape:export-ydpi="114.55"
+       transform="translate(1.5875,-1.0583333)">
+      <rect
+         ry="1.7206059"
+         y="66.906517"
+         x="-255.41638"
+         height="12.970721"
+         width="64.396614"
+         id="rect945"
+         style="fill:#00aad4;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text949"
+         y="74.942024"
+         x="-242.30286"
+         style="font-style:normal;font-weight:normal;font-size:5.99564934px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.14989123"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#ececec;stroke-width:0.14989123"
+           y="74.942024"
+           x="-242.30286"
+           id="tspan947"
+           sodipodi:role="line">TileSupervisor</tspan></text>
+    </g>
+    <g
+       id="g1040"
+       inkscape:export-xdpi="114.55"
+       inkscape:export-ydpi="114.55"
+       transform="translate(1.5875,-1.0583333)">
+      <rect
+         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect987"
+         width="64.396614"
+         height="12.970721"
+         x="-252.07388"
+         y="89.802284"
+         ry="6.4853606" />
+      <rect
+         ry="6.4853606"
+         y="93.015083"
+         x="-254.53073"
+         height="12.970721"
+         width="64.396614"
+         id="rect985"
+         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect971"
+         width="64.396614"
+         height="12.970721"
+         x="-257.55453"
+         y="96.038895"
+         ry="6.4853606" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.99564934px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.14989123"
+         x="-230.01398"
+         y="104.66723"
+         id="text975"><tspan
+           sodipodi:role="line"
+           id="tspan973"
+           x="-230.01398"
+           y="104.66723"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#ececec;stroke-width:0.14989123">Tile</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -224.06427,80.873212 v 5.858632"
+       id="path1081"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="114.55"
+       inkscape:export-ydpi="114.55" />
     <g
        id="g1011"
        transform="translate(13.080091,-1.0583333)"
@@ -209,31 +290,6 @@
            id="tspan815"
            sodipodi:role="line">Application</tspan></text>
     </g>
-    <g
-       id="g1050"
-       inkscape:export-xdpi="114.55"
-       inkscape:export-ydpi="114.55"
-       transform="translate(1.5875,-1.0583333)">
-      <rect
-         ry="1.7206059"
-         y="66.906517"
-         x="-255.41638"
-         height="12.970721"
-         width="64.396614"
-         id="rect945"
-         style="fill:#00aad4;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         id="text949"
-         y="74.942024"
-         x="-242.30286"
-         style="font-style:normal;font-weight:normal;font-size:5.99564934px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.14989123"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#ececec;stroke-width:0.14989123"
-           y="74.942024"
-           x="-242.30286"
-           id="tspan947"
-           sodipodi:role="line">TileSupervisor</tspan></text>
-    </g>
     <flowRoot
        xml:space="preserve"
        id="flowRoot951"
@@ -246,6 +302,23 @@
            x="-623.2641"
            y="221.46361" /></flowRegion><flowPara
          id="flowPara957"></flowPara></flowRoot>    <g
+       id="g1085"
+       transform="translate(1.0205357,-1.0583333)"
+       style="stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-xdpi="114.55"
+       inkscape:export-ydpi="114.55">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1075"
+         d="M -146.65476,64.544643 V 56.79613 l -78.80804,7.937501"
+         style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1077"
+         d="m -146.65476,56.79613 73.516368,7.370535"
+         style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
        id="g1026"
        transform="translate(1.3470877,-1.0583333)"
        inkscape:export-xdpi="114.55"
@@ -296,47 +369,6 @@
            sodipodi:role="line">AntId</tspan></text>
     </g>
     <g
-       id="g1040"
-       inkscape:export-xdpi="114.55"
-       inkscape:export-ydpi="114.55"
-       transform="translate(1.5875,-1.0583333)">
-      <rect
-         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect987"
-         width="64.396614"
-         height="12.970721"
-         x="-252.07388"
-         y="89.802284"
-         ry="6.4853606" />
-      <rect
-         ry="6.4853606"
-         y="93.015083"
-         x="-254.53073"
-         height="12.970721"
-         width="64.396614"
-         id="rect985"
-         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <rect
-         style="fill:#37c871;fill-opacity:1;stroke:#ffffff;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect971"
-         width="64.396614"
-         height="12.970721"
-         x="-257.55453"
-         y="96.038895"
-         ry="6.4853606" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:5.99564934px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.14989123"
-         x="-230.01398"
-         y="104.66723"
-         id="text975"><tspan
-           sodipodi:role="line"
-           id="tspan973"
-           x="-230.01398"
-           y="104.66723"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';fill:#ececec;stroke-width:0.14989123">Tile</tspan></text>
-    </g>
-    <g
        id="g1033"
        transform="translate(3.7162745,-1.0583333)"
        inkscape:export-xdpi="114.55"
@@ -377,23 +409,6 @@
            id="tspan995"
            sodipodi:role="line">Ant</tspan></text>
     </g>
-    <g
-       id="g1085"
-       transform="translate(1.0205357,-1.0583333)"
-       style="stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
-       inkscape:export-xdpi="114.55"
-       inkscape:export-ydpi="114.55">
-      <path
-         inkscape:connector-curvature="0"
-         id="path1075"
-         d="M -146.65476,64.544643 V 56.79613 l -78.80804,7.937501"
-         style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path1077"
-         d="m -146.65476,56.79613 73.516368,7.370535"
-         style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m -146.57915,80.11726 v 6.614584"
@@ -401,20 +416,5 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="114.55"
        inkscape:export-ydpi="114.55" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.70555556;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -224.06427,80.873212 v 5.858632"
-       id="path1081"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="114.55"
-       inkscape:export-ydpi="114.55" />
-    <rect
-       style="fill:#ffffff;fill-opacity:0.6761905;stroke:none;stroke-width:3.59937859;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect1222"
-       width="225"
-       height="125"
-       x="-261.93112"
-       y="-15.637607"
-       ry="1.6191452" />
   </g>
 </svg>

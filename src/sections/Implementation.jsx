@@ -1,20 +1,25 @@
 import React from 'react';
 
-import {
-  CodePane,
-  Heading,
-  List,
-  ListItem,
-  Notes,
-  Slide,
-  SlideSet
-} from 'spectacle';
+import { CodePane, Heading, Notes, Slide, SlideSet } from 'spectacle';
+
+import Steps from '../elements/Steps';
 
 import antGenServer from '../code/ant-gen-server.ex';
 import dynamicSupervisor from '../code/dynamic-supervisor.ex';
 import simpleOneForOneSupervisor from '../code/simple-one-for-one-supervisor.ex';
 import simulationsSupervisorStart from '../code/simulations-supervisor-start.ex';
 import simSupeVia from '../code/sim-supe-via.ex';
+import tileTask from '../code/tile-task.ex';
+import tileGenServer from '../code/tile-gen-server.ex';
+import antMove from '../code/ant-move.ex';
+
+const summarySteps = [
+  'Skynet will run on the BEAM',
+  'Ants are cool',
+  'DynamicSupervisors and Registries',
+  'Type your structs, name them `t`',
+  'Think with processes'
+];
 
 export default (
   <SlideSet>
@@ -32,7 +37,7 @@ export default (
     </Slide>
 
     <Slide
-      bgImage="./img/ants-tree_sims-supe.png"
+      bgImage="./img/ant-tree_sims-supe.png"
       bgSize="contain"
       bgRepeat="no-repeat"
     >
@@ -61,6 +66,7 @@ export default (
 
     <Slide>
       <Heading fit>DynamicSupervisor</Heading>
+
       <CodePane lang="elixir" source={dynamicSupervisor} />
 
       <Notes>
@@ -108,14 +114,14 @@ export default (
     </Slide>
 
     <Slide
-      bgImage="./img/ants-tree_sim-supe.png"
+      bgImage="./img/ant-tree_sim-supe.png"
       bgSize="contain"
       bgRepeat="no-repeat"
     >
       <Notes>
         With that, we can start new SimulationSupervisors. Each
-        SimulationSupervisor controls the supervisors for a given simulation, so
-        they can all be taken down as one unit.
+        SimulationSupervisor controls the supervisors for a given simulation,
+        (super well-named), so they can all be taken down as one unit.
       </Notes>
     </Slide>
 
@@ -135,7 +141,7 @@ export default (
     </Slide>
 
     <Slide>
-      <Heading>SimulationSupervisor.via</Heading>
+      <Heading fit>SimulationSupervisor.via</Heading>
 
       <CodePane lang="elixir" source={simSupeVia} />
 
@@ -146,35 +152,179 @@ export default (
       </Notes>
     </Slide>
 
+    <Slide
+      bgImage="./img/ant-tree_tile.png"
+      bgSize="contain"
+      bgRepeat="no-repeat"
+    >
+      <Notes>
+        For each simulation, we have a TileSupervisor that supervises a bunch of
+        tiles - 400, for a 20 by 20 grid. Each tile is a GenServer, that holds
+        our Tile.t data in state, and can be told to add pheromones or remove
+        food from its state.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading fit>Tile :via tuple</Heading>
+
+      <CodePane
+        lang="elixir"
+        source="{:via, Registry, {SimRegistry, {sim, :tile, x, y}}}"
+      />
+
+      <Notes>
+        The via tuple for the tiles includes the x, y coordinates of the tile.
+        That's important, because it means that, for an ant at some set of
+        coordinates, we can easily look up all the tiles around it, without
+        having to loop through a big list.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading>Updates in Tasks</Heading>
+
+      <CodePane lang="elixir" source={tileTask} />
+
+      <Notes>
+        Putting tiles in their own processes also lets us run fetches and
+        updates concurrently, which on a multi-core processor could be nice. So
+        at the end of a turn, when we want to run the Ant Colony Optimization
+        decay function on any pheromone trails, we're able to use elixir's Task
+        module to spread out the work, and return when all the requests are
+        done.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading>Tile GenServer Methods</Heading>
+
+      <CodePane lang="elixir" source={tileGenServer} />
+
+      <Notes>
+        Once we've got a hold of all the tiles, we can send deposit and
+        decay_pheromones to land, take_food to food, and deposit_food to home.
+        If say a food tile receives a decay_pheromones message, it pattern
+        matches its state, and knows to ignore the message. That way we can just
+        send decay_pheromones to every tile without worrying about errors.
+      </Notes>
+    </Slide>
+
+    <Slide
+      bgImage="./img/ant-tree_ant.png"
+      bgSize="contain"
+      bgRepeat="no-repeat"
+    >
+      <Notes>
+        We also have a process for each ant. But since there's nothing
+        identifying about an ant - they move around, so they don't have stable
+        x, y coordinates - we need a little AntId Agent to assign each ant an
+        ID, and loop through all the IDs when telling ants to move or deposit
+        pheromones.
+      </Notes>
+    </Slide>
+
     <Slide>
       <Heading>Ant GenServer</Heading>
 
       <CodePane lang="elixir" source={antGenServer} />
 
       <Notes>
-        We've already got the structure of an ant figured out, so converting
-        that Ant module into a GenServer is pretty straightforward. The ants
-        will take external commands to move themselves, and once the move phase
-        is complete for each ant, to deposit pheromones if the ant has food.
+        The Ant GenServers, like Tiles, keep an Ant.t in memory. They can take
+        external commands to move themselves, and, after the move phase, to
+        deposit pheromones if the ant has food.
       </Notes>
     </Slide>
 
     <Slide>
-      <Heading>ant_move(ant, surroundings)</Heading>
+      <Heading fit>Looking around</Heading>
 
-      <List>
-        <ListItem>Given surroundings ([Tile.t])</ListItem>
-        <ListItem>Rate each tile with ACO</ListItem>
-        <ListItem>Make weighted random selection</ListItem>
-      </List>
+      <CodePane lang="elixir" source={antMove} />
 
       <Notes>
-        Before we figure out anything else, I think the first step is to see how
-        an ant will move. Then we can decide how to structure the world to make
-        that easy. Ants need to be able to get a list of their immediate
-        surroundings, so they can rate each tile using the ant colony
-        optimization formula, and then make a weighted random selection.
+        To decide where to move, each ant asks the Worlds context for its
+        surroundings, which is a list of tiles. The ant does a weighted random
+        selection from that list, based on the amount of pheromones on each
+        tile, and picks up food if it can. If the ant already has food, since it
+        knows where it it, it just got back a square towards home. Since the
+        Tile GenServer logic is in the Worlds context, the Ants are able to work
+        with tiles without needing to know how they're persisted. So if we
+        decided to store tiles in a map, or a database, the Ants context
+        wouldn't need to change.
       </Notes>
+    </Slide>
+
+    <Slide bgImage="./img/ant-tree.png" bgSize="contain" bgRepeat="no-repeat">
+      <Notes>
+        Those are the highlight! With this simple supervision tree, we're able
+        to spin up 100 ants and 400 tiles, and have them work together in a fun
+        way. One thing I found interesting about programming in this
+        process-heavy way is that it started feeling a little like OOP. I had
+        what were essentially a bunch of instances of ant and tile classes, each
+        with its own state, and methods I could call to update them. Is that a
+        good or bad thing? It definitely felt more Object Oriented than most
+        elixir code I've written. I'm not sure if that's a good thing or a bad
+        thing, but it's certainly A thing. Anyway, now that we've gone through
+        building this thing, let's see it in action!
+      </Notes>
+    </Slide>
+
+    <Slide bgImage="./img/ants.gif" bgSize="contain" bgRepeat="no-repeat">
+      <Notes>
+        And there they go! You can see that the ants scatter around the world at
+        first, and a few ants find all the food options. But because the closest
+        is a faster trip, the pheromones build up quickly, and pretty soon the
+        ants all focus on it. Once they're done, the pheromone trail dies down,
+        they disperse, and focus on the further food. Those are some clever
+        robo-ants!
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading>What did we learn?</Heading>
+
+      <Notes>So, what did we learn here?</Notes>
+    </Slide>
+
+    <Slide bgImage="./img/elixir-terminator.jpg" bdDarken="0.5">
+      <Steps textColor="primary" steps={summarySteps} bold={1} />
+
+      <Notes>
+        Skynet will run on the BEAM, based on how smart those ants are.
+      </Notes>
+    </Slide>
+
+    <Slide bgImage="./img/ant-1.jpg" bgDarken="0.5">
+      <Steps textColor="primary" steps={summarySteps} bold={2} />
+      <Notes>Ants are pretty cool.</Notes>
+    </Slide>
+
+    <Slide>
+      <Steps steps={summarySteps} bold={3} />
+      <Notes>
+        DynamicSupervisors and Registries are useful for handing large numbers
+        of processes.
+      </Notes>
+    </Slide>
+
+    <Slide bgImage="./img/mr-t.jpg" bgDarken="0.5">
+      <Steps textColor="primary" steps={summarySteps} bold={4} />
+      <Notes>
+        It's useful to declare the types of your data structures, including
+        structs - and you can name the main type in a module T.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Steps steps={summarySteps} bold={5} />
+      <Notes>
+        Try thinking in terms of processes instead of tables. It might or might
+        not work, but it's a good starting place.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Heading>Thanks!</Heading>
     </Slide>
   </SlideSet>
 );

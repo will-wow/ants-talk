@@ -4,6 +4,9 @@ import { ListItem, List } from 'spectacle';
 
 const isItemBold = boldItems => item => {
   if (!boldItems) return false;
+  if (!Array.isArray(boldItems)) {
+    boldItems = [boldItems];
+  }
   return boldItems.includes(item + 1);
 };
 
