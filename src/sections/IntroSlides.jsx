@@ -1,14 +1,15 @@
 import React from 'react';
 
 import {
-  SlideSet,
   Heading,
   Image,
+  Link,
   List,
   ListItem,
   Notes,
   Quote,
   Slide,
+  SlideSet,
   Text
 } from 'spectacle';
 
@@ -18,16 +19,23 @@ export default (
       <Heading size={1} fit caps lineHeight={1} textColor="secondary">
         A Swarm of Processes
       </Heading>
-      <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+      <Text margin="1px 0 0" textColor="tertiary" size={1} fit bold>
         Simulating Ant Foraging Behavior with OTP
+      </Text>
+
+      <Text margin="2rem 0 0">
+        <Link href="https://github.com/will-wow/ants">
+          github.com/will-wow/ants
+        </Link>
       </Text>
 
       <Notes>
         Hi, I'm Will! I'm a developer at Carbon Five, here in our LA office. You
         already heard Andrew's pitch so I won't give you that again. Unless you
-        want to work for us, in which case I totally will later. Anyway I'm also
-        almost always at the Elixir LA meetups in Santa Monica, so if you want
-        to chat and we don't get a chance here, maybe I'll see you there!
+        want to work with or for us, in which case I totally will later. Anyway
+        I'm also almost always at the Elixir LA meetups in Santa Monica, so if
+        you want to chat and we don't get a chance here, maybe I'll see you
+        there!
         <br />
         So! A swarm of processes...
       </Notes>

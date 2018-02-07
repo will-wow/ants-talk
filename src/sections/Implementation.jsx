@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { CodePane, Heading, Notes, Slide, SlideSet } from 'spectacle';
+import {
+  CodePane,
+  Heading,
+  Notes,
+  Slide,
+  SlideSet,
+  Text,
+  Link
+} from 'spectacle';
 
 import Steps from '../elements/Steps';
 
@@ -10,13 +18,15 @@ import simpleOneForOneSupervisor from '../code/simple-one-for-one-supervisor.ex'
 import simulationsSupervisorStart from '../code/simulations-supervisor-start.ex';
 import simSupeVia from '../code/sim-supe-via.ex';
 import tileTask from '../code/tile-task.ex';
-import tileGenServer from '../code/tile-gen-server.ex';
 import antMove from '../code/ant-move.ex';
+
+import AntGifSlide from '../elements/AntGifSlide';
 
 const summarySteps = [
   'Skynet will run on the BEAM',
   'Ants are cool',
   'DynamicSupervisors, Registries, and Via Tuples',
+  'Keep it in context',
   'Type your structs, name them `t`',
   'Think with processes'
 ];
@@ -108,10 +118,12 @@ export default (
         which is a data structure that can uniquely identify a process. That
         way, even if a process is dynamically started, and later throws and
         error and is restarted, getting a new pid, you can still pass messages
-        to it. A via tuple has this structure - a three-tuple of the via atom,
-        the registry module, and then some identifying tuple that starts with
-        the name of a registry you've started. I like to collect all my
-        via-tuple-generating functions into one module, so they can share logic.
+        to it. A via tuple has this structure - a three-tuple of the atom :via,
+        the registry module, and then some a tuple that starts with the name of
+        a module you've set up as a registry, and then has whatever identifying
+        information you want. I like to collect all my via-tuple-generating
+        functions into one module, so they can share logic, but that's not
+        required.
       </Notes>
     </Slide>
 
@@ -149,8 +161,9 @@ export default (
 
       <Notes>
         By convention, a process module can include a function called via that
-        returns its via tuple. Because I've collected the via-generating
-        functions in a SimRegistry module, that's pretty simple.
+        returns its via tuple, which you can use when stating the process as a
+        child. Because I've collected the via-generating functions in a
+        SimRegistry module, that's pretty simple.
       </Notes>
     </Slide>
 
@@ -178,8 +191,9 @@ export default (
       <Notes>
         The via tuple for the tiles includes the x, y coordinates of the tile.
         That's important because it means that, for an ant at some set of
-        coordinates, we can easily look up all the tiles around it without
-        having to loop through a big list.
+        coordinates, we can easily look up all the tiles around it - for an at
+        at 1, 1, all the tiles from between 0, 0 and 2, 2. That would be
+        inefficient if the tiles were in a big list.
       </Notes>
     </Slide>
 
@@ -192,23 +206,9 @@ export default (
         Putting tiles in their own processes also lets us run fetches and
         updates concurrently, which on a multi-core processor could be nice. So
         at the end of a turn, when we want to run the Ant Colony Optimization
-        decay function on any pheromone trails, we're able to use elixir's Task
-        module to spread out the work, and return when all the requests are
-        done.
-      </Notes>
-    </Slide>
-
-    <Slide>
-      <Heading>Tile GenServer Methods</Heading>
-
-      <CodePane lang="elixir" source={tileGenServer} />
-
-      <Notes>
-        Once we've got a hold of all the tiles, we can send deposit_pheromones
-        and decay_pheromones to Land, take_food to Food, and deposit_food to
-        Home. If say a food tile receives a decay_pheromones message, it pattern
-        matches its state, and knows to ignore the message. That way we can just
-        send decay_pheromones to every tile without worrying about errors.
+        decay function on any pheromone trails, or collect the state of every
+        tile for display, we're able to use elixir's Task module to spread out
+        the work, and then return when all the requests are done.
       </Notes>
     </Slide>
 
@@ -245,14 +245,14 @@ export default (
 
       <Notes>
         To decide where to move, each ant asks the Worlds context for its
-        surroundings, which is a list of tiles. The ant does a weighted random
-        selection from that list, based on the amount of pheromones on each
-        tile, and picks up food if it can. If the ant already has food, since it
-        knows where it it, it just got back a square towards home. Since the
-        Tile GenServer logic is in the Worlds context, the Ants are able to work
-        with tiles without needing to know how they're persisted. So if we
-        decided to store tiles in a map, or a database, the Ants context
-        wouldn't need to change.
+        surroundings, which is a list of tiles. The ant then does a weighted
+        random selection from that list, based on the amount of pheromones on
+        each tile, and picks up food if it can. If the ant already has food,
+        since it knows where it is in the world, it can just go back a square
+        towards home. Since the Tile GenServer logic is in the Worlds context,
+        the Ants are able to work with tiles without needing to know how they're
+        persisted. So if we decided to store tiles in a map, or a database, the
+        Ants context wouldn't need to change.
       </Notes>
     </Slide>
 
@@ -271,16 +271,7 @@ export default (
       </Notes>
     </Slide>
 
-    <Slide bgImage="./img/ants.fig" bgSize="contain" bgRepeat="no-repeat">
-      <Notes>
-        And there they go! You can see that the ants scatter around the world at
-        first, and a few ants find all the food options. But because the closest
-        is a faster trip, the pheromones build up quickly, and pretty soon the
-        ants all focus on it. Once they're done, the pheromone trail dies down,
-        they disperse, and focus on the further food. Those are some clever
-        robo-ants!
-      </Notes>
-    </Slide>
+    <AntGifSlide />
 
     <Slide>
       <Heading>What did we learn?</Heading>
@@ -292,7 +283,8 @@ export default (
       <Steps textColor="primary" steps={summarySteps} bold={1} />
 
       <Notes>
-        Skynet will run on the BEAM, based on how smart those ants are.
+        Well first of all, apparently Skynet will run on the BEAM, based on how
+        smart those ants are.
       </Notes>
     </Slide>
 
@@ -309,8 +301,18 @@ export default (
       </Notes>
     </Slide>
 
+    <Slide>
+      <Steps steps={summarySteps} bold={4} />
+      <Notes>
+        Keep your business logic in your contexts. We didn't even look at the
+        web code here, because there's nothing to see - the turn endpoint just
+        immediately calls out to the Simulations context to cause a turn a get
+        back the state of the simulation.
+      </Notes>
+    </Slide>
+
     <Slide bgImage="./img/mr-t.jpg" bgDarken="0.5">
-      <Steps textColor="primary" steps={summarySteps} bold={4} />
+      <Steps textColor="primary" steps={summarySteps} bold={5} />
       <Notes>
         It's useful to declare the types of your data structures, including
         structs - and you can name the main type in a module T.
@@ -318,7 +320,7 @@ export default (
     </Slide>
 
     <Slide>
-      <Steps steps={summarySteps} bold={5} />
+      <Steps steps={summarySteps} bold={6} />
       <Notes>
         Try thinking in terms of processes instead of tables. It might or might
         not work, but it's a good starting place.
@@ -327,6 +329,17 @@ export default (
 
     <Slide>
       <Heading>Thanks!</Heading>
+
+      <Text margin="2rem 0 0">
+        <Link href="https://github.com/will-wow/ants">
+          github.com/will-wow/ants
+        </Link>
+      </Text>
+
+      <Notes>
+        Thanks! And if you want to crib from anything you saw here, or play with
+        the ants yourself, that's all in the repo here! So, any questions?
+      </Notes>
     </Slide>
   </SlideSet>
 );
