@@ -27,7 +27,7 @@ export default (
       <CodePane lang="elixir" source={antType} />
 
       <Notes>
-        A reasonable place to start might be to define our humble ants. Like we
+        A reasonable place to start might be to define our humble ant. Like we
         discussed earlier, and ant only really knows two things - where they are
         in the world, and if they're carrying food or not. So our Ant model is
         equally simple - it know x, y coordinates, and has a food? boolean.
@@ -113,11 +113,12 @@ export default (
       <CodePane lang="elixir" source={tilePatternMatch} />
 
       <Notes>
-        So because we know that we have a Tile.t here, and make some decision
-        based on what type it is. Obviously this kind of pattern matching is
-        common in Elixir, but it's nice to put a name (or several) to it. Also,
-        because I've declared the possible types of a Tile, it's easy to verify
-        that this is a "total function", in that it handles all possible inputs.
+        So for instance because we know that we have a Tile.t in this rating
+        function, we can make some decision based on what type it is. Obviously
+        this kind of pattern matching is common in Elixir, but it's nice to give
+        the technique a name (or, several names). Also, because I've declared
+        the possible types of a Tile, it's easy to verify that rating is a
+        "total function", in that it handles all possible inputs.
       </Notes>
     </Slide>
 
@@ -128,11 +129,13 @@ export default (
 
       <Notes>
         A couple of other types, Points and Moves, round out our domain model.<br />
-        Both of which are defined as pairs of integers: Points are x, y
-        coordinates that start at 0, and Moves are changes to x and y that go
-        from -1 to 1. Even though they're internally represented in the same
-        way, they have different modules so we have a place to put functions
-        that operate on one or the other.
+        Both of which are defined as pairs of integers, but points are x, y
+        coordinates on the grid, and Moves are changes to x and y that go from
+        -1 to 1. Even though they're internally represented in the same way,
+        they have different modules so that we have a place to put functions
+        that operate on one or the other and so that the types make it clear
+        what x and y mean in a given function. Also if we some day want to
+        change one of the data structures, we can do that work in one place.
       </Notes>
     </Slide>
   </SlideSet>

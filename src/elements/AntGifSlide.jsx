@@ -21,7 +21,7 @@ export default class AntGifSlide extends React.Component {
             <ListItem>
               web request every 50ms to do a turn and get state
             </ListItem>
-            <ListItem>turns taking about 20ms</ListItem>
+            <ListItem>turns taking about 6ms</ListItem>
           </List>
         </Notes>
       </Slide>

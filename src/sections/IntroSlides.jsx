@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Heading,
   Image,
-  Link,
   List,
   ListItem,
   Notes,
@@ -15,18 +14,12 @@ import {
 
 export default (
   <SlideSet>
-    <Slide bgColor="primary">
-      <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-        A Swarm of Processes
+    <Slide>
+      <Heading size={2} caps lineHeight={1} textColor="secondary">
+        What is this, a presentation for ants?
       </Heading>
       <Text margin="1px 0 0" textColor="tertiary" size={1} fit bold>
         Simulating Ant Foraging Behavior with OTP
-      </Text>
-
-      <Text margin="2rem 0 0">
-        <Link href="https://github.com/will-wow/ants">
-          github.com/will-wow/ants
-        </Link>
       </Text>
 
       <Notes>
@@ -37,7 +30,7 @@ export default (
         you want to chat and we don't get a chance here, maybe I'll see you
         there!
         <br />
-        So! A swarm of processes...
+        So!
       </Notes>
     </Slide>
 

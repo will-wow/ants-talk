@@ -3,7 +3,6 @@ import React from 'react';
 import {
   CodePane,
   Heading,
-  Image,
   List,
   ListItem,
   Notes,
@@ -12,7 +11,6 @@ import {
 } from 'spectacle';
 
 import AntSteps from '../elements/AntSteps';
-import CiteLink from '../elements/CiteLink';
 
 import antSearchingPseudoCode from '../code/ant-searching-pseudo-code.ex';
 import antGoingHomePseudoCode from '../code/ant-going-home-pseudo-code.ex';
@@ -46,19 +44,25 @@ export default (
           But where ever Alice goes, she's generally able to keep track of where
           she is. Scientists think that some ants can keep track of landmarks,
           and others actually count their steps and know their location by dead
-          reckoning. We know this because some scientists attached tiny stilts
-          to ant legs (don't ask me how, and tragically I couldn't find
-          pictures). They found that the ants overshot their colony when
-          returning to it, because their step counts and distance were off.
+          reckoning. We know this because... 
           `
     })}
+
+    <Slide bgImage="./img/ant-stilts.gif" bgSize="contain" bgRepeat="no-repeat">
+      <Notes>
+        Some scientists glued tiny stilts to the legs of desert ants, then gave
+        them food and let them go back to their colony. They found that the ants
+        totally overshot the colony, because their step counts and distance were
+        off.
+      </Notes>
+    </Slide>
 
     {AntSteps({
       name: 'Alice the Ant',
       image: './img/ant-1.jpg',
       bold: [3, 4, 5],
       notes: `
-            In any case, once Alice comes across food, she picks up a piece, and
+            So that's kinda wild, but anyway once Alice comes across food, she picks up a piece, and
             heads back home. Since she knows where she is, she's able to take a
             pretty direct path back.
           `
@@ -89,7 +93,7 @@ export default (
       name: 'Bobbie the Mediocre Scout',
       image: './img/ant-2.jpg',
       notes: `
-            Now let's follow Bobbie, another ant. She follows the same steps,
+            Now let's follow Bobbie, another, less talented ant. She follows the same steps,
             but happens to find food that's twice as far out as Alice's. Still, she takes it back, leaving a pheromone trail behind her. 
           `
     })}
@@ -123,12 +127,7 @@ export default (
         it to food, depending on how strong the trail is.
       </Notes>
     </Slide>
-    <Slide>
-      <Heading fit>Bringing it Together</Heading>
-      <Image src="./img/aco-image.png" />
-
-      <CiteLink href="https://en.wikipedia.org/wiki/File:Knapsack_ants.svg" />
-
+    <Slide bgImage="./img/aco-image.png" bgSize="contain" bgRepeat="no-repeat">
       <Notes>
         Now we see how this comes together. If in Eve's wandering she comes
         across Bobbie's weak trail, she may choose to pass it by. But when she
@@ -179,7 +178,7 @@ export default (
       <Notes>
         If Alice is carrying food on the other hand, then she deposits
         pheromones and keeps going towards on toward home. When she gets home,
-        she drops off the food and heads back out. Simple.
+        she drops off the food and heads back out.
       </Notes>
     </Slide>
   </SlideSet>
