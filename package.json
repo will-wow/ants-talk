@@ -11,6 +11,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "deploy": "yarn build && surge -p ./build",
     "test": "react-app-rewired test --env=jsdom",
     "format": "prettier --write **/*.{js,json}"
   },
