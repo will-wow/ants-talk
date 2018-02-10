@@ -44,10 +44,11 @@ export default (
       <Notes>
         For a set of possible moves, the probability of picking one of them is
         the amount of pheromone deposited on the move, to the power of some
-        influence factor (2.0 by default), times the desirability of the move
-        (which might relate to distance in a traveling salesman problem, or
-        value in a knapsack problem), also taken to some factor, divided by the
-        sum of the value of all the other available moves.
+        influence factor (2.0 by default in the literature), times the
+        desirability of the move (which might relate to distance in a traveling
+        salesman problem, or value in a knapsack problem), also taken to some
+        factor, divided by the sum of the value of all the other available
+        moves.
       </Notes>
     </Slide>
 
@@ -59,8 +60,8 @@ export default (
       <Notes>
         The traveling salesman problem is a classic hard problem in computer
         science. A traveling salesperson wants to visit a bunch of cities in the
-        least time possible. How do they do that? Well it turns out there's no
-        easy way to figure it out, but ACO is a pretty good approach.
+        least amount of time possible. How do they do that? Well it turns out
+        there's no easy way to figure it out, but ACO is a pretty good approach.
       </Notes>
     </Slide>
 
@@ -71,8 +72,8 @@ export default (
 
       <Notes>
         With Ant Colony Optimization, you have a bunch of ants randomly traverse
-        a graph of cities, visiting each one once. Afterwards, each ant drops a
-        pheromone trail on its path, with the strength of the trail
+        a graph of cities, making sure to visit each one once. Afterwards, each
+        ant drops a pheromone trail on its path, with the strength of the trail
         corresponding to how short the trip was. Since the ants use the ACO
         algorithm to choose the moves, over multiple iterations the ants
         coalesce onto an optimal solution. Pretty smart ants!

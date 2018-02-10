@@ -5,9 +5,8 @@ import { Notes, Slide, List, ListItem } from 'spectacle';
 export default class AntGifSlide extends React.Component {
   render() {
     const { props } = this;
-    console.log('render', props.slideIndex, props.lastSlideIndex);
     return (
-      <Slide bgImage="./img/ants.gif" bgSize="contain" bgRepeat="no-repeat">
+      <Slide>
         <Notes>
           <List>
             <ListItem>Wander randomly at first</ListItem>

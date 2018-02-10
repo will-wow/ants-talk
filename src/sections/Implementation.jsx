@@ -78,12 +78,12 @@ export default (
 
       <Notes>
         Whatever sort of dynamic supervisor you use though, there's a problem -
-        naming. To work with an Erlang process, you need to know its name or
-        pid. That's easy for processes you only have one instance of, since you
-        can give it a global name, often the name of its module, like with the
-        SimulationsSupervisor. But for a process that you're going to have a
-        bunch of, like an Ant, that doesn't work. Instead, we'll need a
-        Registry, and a Via Tuple.
+        naming. To work with an Erlang process, you need to know its name or pid
+        to send it messages. That's easy for processes you only have one
+        instance of, since you can give it a global name, often the name of its
+        module, like with the SimulationsSupervisor. But for a process that
+        you're going to have a bunch of, like an Ant, that doesn't work.
+        Instead, we'll need a Registry, and a Via Tuple.
       </Notes>
     </Slide>
 
@@ -201,11 +201,11 @@ export default (
         surroundings, which is a list of tiles. The ant then does a weighted
         random selection from that list, using the ACO algorithm, and picks up
         food if it sees it. If the ant already has food, since it knows where it
-        is in the world, it can just go back a square towards home. Since the
-        Tile GenServer logic is in the Worlds context, the Ants are able to work
-        with tiles without needing to know how they're persisted. So if we
-        decided to store tiles in a map, or a database, the Ants context
-        wouldn't need to change.
+        is in the world, and where the colony is, it knows which direction to go
+        to get to home. Since the Tile GenServer logic is in the Worlds context,
+        the Ants are able to work with tiles without needing to know how they're
+        persisted. So if we decided to store tiles in a map, or a database, the
+        Ants context wouldn't need to change.
       </Notes>
     </Slide>
 
@@ -230,8 +230,8 @@ export default (
       <Steps textColor="primary" steps={summarySteps} bold={1} />
 
       <Notes>
-        Well first of all, apparently Skynet will run on the BEAM, based on how
-        smart those ants are.
+        Well first of all, this is how Skynet starts - and OTP supervisors
+        already know how to terminate.
       </Notes>
     </Slide>
 
@@ -245,7 +245,7 @@ export default (
 
     <Slide bgImage="./img/ant-1.jpg" bgDarken="0.5">
       <Steps textColor="primary" steps={summarySteps} bold={3} />
-      <Notes>Ants are pretty cool.</Notes>
+      <Notes>Ants are pretty cool, we learned that.</Notes>
     </Slide>
 
     <Slide>
@@ -254,7 +254,7 @@ export default (
         Keep your business logic in your contexts. We didn't even look at the
         phoenix web code here, because there's nothing to see - the turn
         endpoint just immediately calls out to the Simulations context to cause
-        a turn a get back the state of the simulation.
+        a turn and get back the state of the simulation.
       </Notes>
     </Slide>
 
@@ -282,17 +282,22 @@ export default (
         of the whole simulation. With every ant in its own process, if an ant
         manages to wander off the edge of the world, it's killed, logs a
         message, and then gets restarted back at the colony. If it was essential
-        that the simulation never go down, that would be really useful. I mean,
-        I wish I was a supervised process. But finally - it's a nice way to
-        think. I'm simulating independently acting ants, so it's nice to model
-        them that way. In some ways, it's almost object oriented - we've got
-        what are essentially a bunch of instances of ant and tile classes, each
-        with its own state, and methods we can call to update them. But, we get
-        the benefits of OOP - nice models - without the drawbacks of mutable
-        state and inheritance trees and all the other reasons we like to use
-        Elixir. Going all-in on processes isn't going to be the right fit for
-        every project, but I think it is a good fit for more projects than we
-        realize.
+        that the simulation never go down, that would be really useful.
+      </Notes>
+    </Slide>
+
+    <Slide>
+      <Steps steps={summarySteps} bold={6} />
+      <Notes>
+        But finally - it's a nice way to think. I'm simulating independently
+        acting ants, so it's nice to model them that way. In some ways, it's
+        almost object oriented - we've got what are essentially a bunch of
+        instances of ant and tile classes, each with its own state, and methods
+        we can call to update them. But, we get the benefits of OOP - nice
+        models - without the drawbacks of mutable state and crazy inheritance
+        trees and all the other reasons we like to use Elixir instead. Going
+        all-in on processes isn't going to be the right fit for every project,
+        but I think it is a good fit for more projects than we realize.
       </Notes>
     </Slide>
 

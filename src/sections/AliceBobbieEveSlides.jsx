@@ -53,7 +53,8 @@ export default (
         Some scientists glued tiny stilts to the legs of desert ants, then gave
         them food and let them go back to their colony. They found that the ants
         totally overshot the colony, because their step counts and distance were
-        off.
+        off. They also found that they had been gluing tiny stilts onto ants,
+        which is a pretty awesome way to do science.
       </Notes>
     </Slide>
 
@@ -62,7 +63,7 @@ export default (
       image: './img/ant-1.jpg',
       bold: [3, 4, 5],
       notes: `
-            So that's kinda wild, but anyway once Alice comes across food, she picks up a piece, and
+            Anyway. Once Alice comes across food, she picks up a piece, and
             heads back home. Since she knows where she is, she's able to take a
             pretty direct path back.
           `
@@ -133,10 +134,11 @@ export default (
         across Bobbie's weak trail, she may choose to pass it by. But when she
         comes across Alice's strong trail, she knows there's food close by, and
         she's more likely to get on the trail. Over time, more and more ants
-        make that same choice, and so eventually the colony forms up and quickly
-        collects the closest food. Then, once the food has been collected,
-        Alice's trail evaporates, and perhaps the ants will find Bobbie's trail
-        and focus on it next.
+        make that same choice, find food, and lay down their own pheromones on
+        the way back. So the colony forms up and pretty quickly collects the
+        closest food. Then, once the food has been collected, Alice's trail
+        evaporates, and ants wander off, perhaps to find Bobbie's trail and
+        focus on it next.
       </Notes>
     </Slide>
 
@@ -155,7 +157,7 @@ export default (
       <Notes>
         So that's more or less how ants work! Which is interesting, maybe. But
         as a developer, what's maybe more interesting is that what Alice and
-        friends were doing looked a lot like code.
+        friends were doing sounds a lot like code.
       </Notes>
     </Slide>
 
@@ -178,7 +180,7 @@ export default (
       <Notes>
         If Alice is carrying food on the other hand, then she deposits
         pheromones and keeps going towards on toward home. When she gets home,
-        she drops off the food and heads back out.
+        she drops off the food and heads back out. That's pretty algorithmic.
       </Notes>
     </Slide>
   </SlideSet>
