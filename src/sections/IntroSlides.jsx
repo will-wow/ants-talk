@@ -23,12 +23,11 @@ export default (
       </Text>
 
       <Notes>
-        Hi, I'm Will! I'm a developer at Carbon Five, here in our LA office. You
-        already heard Andrew's pitch so I won't give you that again. Unless you
-        want to work with or for us, in which case I totally will later. Anyway
-        I'm also almost always at the Elixir LA meetups in Santa Monica, so if
-        you want to chat and we don't get a chance here, maybe I'll see you
-        there!
+        Hi, I'm Will! I'm a developer at Carbon Five, here in our Santa Monica
+        office. As Andrew said, we're an agile product development company, and
+        work with companies from new startups learning how to do agile to large
+        companies that want to get better at it. We also often host the Elixir
+        LA meetup in Santa Monica, so hopefully I'll see some of you there.
         <br />
         So!
       </Notes>

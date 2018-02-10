@@ -28,15 +28,15 @@ export default (
 
       <Notes>
         A reasonable place to start might be to define our humble ant. Like we
-        discussed earlier, and ant only really knows two things - where they are
+        discussed earlier, and ant only really knows two facts - where they are
         in the world, and if they're carrying food or not. So our Ant model is
-        equally simple - it know x, y coordinates, and has a food? boolean.
-        You'll notice I also defined a type for our ant. Types obviously aren't
-        required in Elixir - but declaring types for structs lets the static
-        type checker dialyzer be a lot smarter, and is also a nice bit of
-        documentation. In the Elixir standard library, as well as in typed
-        functional languages like OCaml, It's idiomatic to name the main type in
-        a module t...
+        equally simple - it knows its x, y coordinates, and it has a food?
+        boolean. You'll notice I also defined a type for our ant. Types
+        obviously aren't required in Elixir - but declaring types for structs
+        lets the static type checker dialyzer be a lot smarter, and is also a
+        nice bit of documentation. In the Elixir standard library, as well as in
+        typed functional languages like OCaml, It's idiomatic to name the main
+        type in a module t...
       </Notes>
     </Slide>
 
@@ -46,7 +46,7 @@ export default (
       <CodePane
         lang="elixir"
         source={`
-        @spec some_function(Ant.t) :: any
+        @spec some_function(Ant.t()) :: any
         def some_function(ant = %Ant{}) do
           ...
         end
